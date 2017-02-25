@@ -23,11 +23,11 @@ public class SquareTest {
 
     public Square square;
     public double length;
-    public double delta;
+    public double maxDelta;
 
-    public SquareTest(Double length, Double delta){
+    public SquareTest(Double length, Double maxDelta){
         this.length = length;
-        this.delta = delta;
+        this.maxDelta = maxDelta;
     }
 
     @Before
@@ -36,7 +36,7 @@ public class SquareTest {
         System.out.println("-------------------------------------------------------");
         System.out.println("Input data:");
         System.out.println("Length = " + length);
-        System.out.println("Delta = " + delta);
+        System.out.println("Delta = " + maxDelta);
     }
 
     @Parameterized.Parameters
@@ -62,8 +62,8 @@ public class SquareTest {
 
     @Test
     public void testSideLength() {
-        System.out.format("expected length = %.2f, actual length = %.2f%n", length, square.sideLength());
-        assertEquals("Actual length must be equals expected length", length, square.sideLength(), delta);
+        System.out.format("expected length = %.2f, actual length = %.2f, delta = %.2f%n", length, square.sideLength(), (length - square.sideLength()));
+        assertEquals("Actual length must be equals expected length", length, square.sideLength(), maxDelta);
         System.out.println("RESULT: OK");
     }
 
@@ -76,8 +76,8 @@ public class SquareTest {
 
     @Test
     public void testSquare() {
-        System.out.format("expected square = %.2f, actual square = %.2f%n", length * length, square.square());
-        assertEquals("Actual square must be equals expected square", length * length, square.square(), delta);
+        System.out.format("expected square = %.2f, actual square = %.2f, delta = %.2f%n", length * length, square.square(), (length * length - square.square()));
+        assertEquals("Actual square must be equals expected square", length * length, square.square(), maxDelta);
         System.out.println("RESULT: OK");
     }
 
